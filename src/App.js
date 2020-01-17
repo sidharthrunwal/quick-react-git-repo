@@ -1,4 +1,6 @@
 import React from 'react';
+import 'rbx/index.css';
+import { Button, Container, Title } from 'rbx';
 
 
 const terms = { F: 'Fall', W: 'Winter', S: 'Spring'};
@@ -30,16 +32,14 @@ const schedule = {
 };
 
 const App = () =>  (
-  <div>
+  <Container>
     <Banner title={ schedule.title } />
     <CourseList courses={ schedule.courses } />
-  </div>
+  </Container>
 );
-
 const Banner = ({ title }) => (
-  <h1>{ title }</h1>
+  <Title>{ title }</Title>
 );
-
 
 const getCourseTerm = course => (
   terms[course.id.charAt(0)]
@@ -50,14 +50,14 @@ const getCourseNumber = course => (
 )
   
 const Course = ({ course }) => (
-  <button>
+  <Button>
     { getCourseTerm(course) } CS { getCourseNumber(course) }: { course.title }
-  </button>
+  </Button>
 );
 
 const CourseList = ({ courses }) => (
-  <div>
-    { courses.map(course => <Course key={course.id} course={ course } />) }
-  </div>
+  <Button.Group>
+    {courses.map(course => <Course key={course.id} course={ course } />)}
+  </Button.Group>
 );
 export default App;
